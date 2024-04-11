@@ -1,0 +1,83 @@
+.index_docker_info{
+    float: left;
+    margin-left: 35px;
+}
+
+.index_system_ip{
+    float: left;
+    margin-left: 35px;
+}
+
+.index_system_info_virtual{
+    float: left;
+    margin-left: 35px;
+}
+
+.index_system_info_disk{
+    float: left;
+    margin-left: 35px;
+}
+
+.index_system_info_cpu{
+    float: left;
+    margin-left: 35px;
+}
+
+.base_menu{
+    width: auto;
+    height: 50px;
+}
+
+.base_top_button{
+    width: 150px;
+    height: 50px;
+    float: left;
+    border: none;
+    margin-left: 5px;
+}
+
+.base_body{
+    margin-left: 5px;
+}
+
+.image_docker_list_image_table{
+    border-collapse: separate;
+    border-top: 1px solid #dfe6ec;
+    border-left: 1px solid #dfe6ec;
+  }
+
+.image_docker_list_image_table tr th {
+    background-color: #f8f8f9;
+    padding: 6px;
+    text-align: center;
+    border-bottom: 1px solid #dfe6ec;
+    border-right: 1px solid #dfe6ec;
+}
+.image_docker_list_image_table tr td {
+    padding: 6px;
+    text-align: center;
+    height: 34px;
+    border-bottom: 1px solid #dfe6ec;
+    border-right: 1px solid #dfe6ec;
+}
+
+.container_docker_list_container_table{
+    border-collapse: separate;
+    border-top: 1px solid #dfe6ec;
+    border-left: 1px solid #dfe6ec;
+  }
+
+.container_docker_list_container_table tr th {
+    background-color: #f8f8f9;
+    padding: 6px;
+    text-align: center;
+    border-bottom: 1px solid #dfe6ec;
+    border-right: 1px solid #dfe6ec;
+}
+.container_docker_list_container_table tr td {
+    padding: 6px;
+    text-align: center;
+    height: 34px;
+    border-bottom: 1px solid #dfe6ec;
+    border-right: 1px solid #dfe6ec;
+}
