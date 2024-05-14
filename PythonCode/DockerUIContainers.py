@@ -4,12 +4,11 @@ import docker
 class DockerUIContainers(object):
     def __init__(self):
         self.docker_env = docker.from_env()
-
+    
     def refresh_docker_information(self):
         self.docker_env = docker.from_env()
 
-    def docker_run_containers(self, image_name: str, user: str, name: str, port: dict, environment: dict or list,
-                              command="/bin/bash"):
+    def docker_run_containers(self, image_name: str, user: str, name: str, port: dict, environment: list or dict, command="/bin/bash"):
         """
         创建并运行容器
         :param image_name: 镜像名字
@@ -25,31 +24,27 @@ class DockerUIContainers(object):
             if port == "" and environment == "" and command == "":
                 self.docker_env.containers.run(image=image_name, user=user, name=name, detach=True)
             elif port != "" and environment != "" and command != "":
-                self.docker_env.containers.run(image=image_name, command=command, user=user, name=name, detach=True,
-                                               port=port, environment=environment)
+                self.docker_env.containers.run(image=image_name, command=command, user=user, name=name, detach=True, ports=port, environment=environment)
             elif port == "" and environment != "" and command != "":
-                self.docker_env.containers.run(image=image_name, command=command, user=user, name=name, detach=True,
-                                               environment=environment)
+                self.docker_env.containers.run(image=image_name, command=command, user=user, name=name, detach=True, environment=environment)
             elif port != "" and environment == "" and command != "":
-                self.docker_env.containers.run(image=image_name, command=command, user=user, name=name, detach=True,
-                                               port=port)
+                self.docker_env.containers.run(image=image_name, command=command, user=user, name=name, detach=True, ports=port)
             elif port != "" and environment != "" and command == "":
-                self.docker_env.containers.run(image=image_name, user=user, name=name, detach=True, port=port,
-                                               environment=environment)
+                self.docker_env.containers.run(image=image_name, user=user, name=name, detach=True, ports=port, environment=environment)
             elif port == "" and environment == "" and command != "":
                 self.docker_env.containers.run(image=image_name, command=command, user=user, name=name, detach=True)
             elif port == "" and environment != "" and command == "":
-                self.docker_env.containers.run(image=image_name, command=command, user=user, name=name, detach=True,
-                                               environment=environment)
+                self.docker_env.containers.run(image=image_name, command=command, user=user, name=name, detach=True, environment=environment)
             elif port != "" and environment == "" and command == "":
-                self.docker_env.containers.run(image=image_name, user=user, name=name, detach=True, port=port)
+                self.docker_env.containers.run(image=image_name, user=user, name=name, detach=True, ports=port)
+            else:
+                return False
             return True
         except Exception as e:
             return str(e)
 
     # TODO
-    def docker_create_containers(self, image_name: str, user: str, name: str, port: dict, environment: dict or list,
-                                 command="/bin/bash"):
+    def docker_create_containers(self, image_name: str, user: str, name: str, port: dict, environment: dict or list, command="/bin/bash"):
         """
         创建并运行容器
         :param image_name: 镜像名字
@@ -65,24 +60,19 @@ class DockerUIContainers(object):
             if port == "" and environment == "" and command == "":
                 self.docker_env.containers.create(image=image_name, user=user, name=name, detach=True)
             elif port != "" and environment != "" and command != "":
-                self.docker_env.containers.create(image=image_name, command=command, user=user, name=name, detach=True,
-                                                  port=port, environment=environment)
+                self.docker_env.containers.create(image=image_name, command=command, user=user, name=name, detach=True, ports=port, environment=environment)
             elif port == "" and environment != "" and command != "":
-                self.docker_env.containers.create(image=image_name, command=command, user=user, name=name, detach=True,
-                                                  environment=environment)
+                self.docker_env.containers.create(image=image_name, command=command, user=user, name=name, detach=True, environment=environment)
             elif port != "" and environment == "" and command != "":
-                self.docker_env.containers.create(image=image_name, command=command, user=user, name=name, detach=True,
-                                                  port=port)
+                self.docker_env.containers.create(image=image_name, command=command, user=user, name=name, detach=True, ports=port)
             elif port != "" and environment != "" and command == "":
-                self.docker_env.containers.create(image=image_name, user=user, name=name, detach=True, port=port,
-                                                  environment=environment)
+                self.docker_env.containers.create(image=image_name, user=user, name=name, detach=True, ports=port, environment=environment)
             elif port == "" and environment == "" and command != "":
                 self.docker_env.containers.create(image=image_name, command=command, user=user, name=name, detach=True)
             elif port == "" and environment != "" and command == "":
-                self.docker_env.containers.create(image=image_name, command=command, user=user, name=name, detach=True,
-                                                  environment=environment)
+                self.docker_env.containers.create(image=image_name, command=command, user=user, name=name, detach=True, environment=environment)
             elif port != "" and environment == "" and command == "":
-                self.docker_env.containers.create(image=image_name, user=user, name=name, detach=True, port=port)
+                self.docker_env.containers.create(image=image_name, user=user, name=name, detach=True, ports=port)
             return True
         except Exception as e:
             return str(e)
@@ -105,7 +95,7 @@ class DockerUIContainers(object):
             return containers_infos
         except Exception as e:
             return str(e)
-
+    
     def docker_get_containers(self, image_name: str):
         """
         查询某个容器
@@ -116,14 +106,14 @@ class DockerUIContainers(object):
         try:
             container = self.docker_env.containers.get(image_name)
             return {
-                "name": container.name,
-                "id": container.id,
-                "image": container.image,
-                "attrs": container.attrs,
-                "labels": container.labels,
-                "short_id": container.short_id,
-                "status": container.status
-            }
+                        "name": container.name,
+                        "id": container.id,
+                        "image": container.image,
+                        "attrs": container.attrs,
+                        "labels": container.labels,
+                        "short_id": container.short_id,
+                        "status": container.status
+                    }
         except Exception as e:
             return str(e)
 
@@ -166,7 +156,7 @@ class DockerUIContainers(object):
         except Exception as e:
             return str(e)
 
-    def docker_rename_containers(self, image_name: str):
+    def docker_rename_containers(self, image_name: str, new_name: str):
         """
         重命名某个容器
         :param image_name: 镜像名字
@@ -174,7 +164,7 @@ class DockerUIContainers(object):
         """
         self.refresh_docker_information()
         try:
-            self.docker_env.containers.get(image_name).rename()
+            self.docker_env.containers.get(image_name).rename(new_name)
             return True
         except Exception as e:
             return str(e)
@@ -238,8 +228,8 @@ class DockerUIContainers(object):
 
 if __name__ == '__main__':
     run = DockerUIContainers()
-    a = run.docker_list_containers()
-    print(a)
+    a = run.docker_get_containers("dk_qinglong-web-1")
+    import pprint; pprint.pprint(a)
 
 
 

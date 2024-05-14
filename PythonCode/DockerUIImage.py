@@ -4,7 +4,7 @@ import docker
 class DockerUIImage(object):
     def __init__(self):
         self.docker_env = docker.from_env()
-
+    
     def refresh_docker_information(self):
         self.docker_env = docker.from_env()
 
@@ -68,11 +68,8 @@ class DockerUIImage(object):
             }
         except Exception as e:
             return str(e)
-
-
 if __name__ == '__main__':
     run = DockerUIImage()
-    a = run.docker_list_image()
-    import pprint;
-
-    pprint.pprint(a)
+    a = run.docker_get_image("python")
+    import pprint; pprint.pprint(a)
+    

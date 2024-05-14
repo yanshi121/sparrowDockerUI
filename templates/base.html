@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{title}}</title>
+    <link rel="stylesheet" type="text/css" href="static/css/index.css">
+</head>
+<script type="text/javascript" src="static/js/public.js"></script>
+<script type="text/javascript" src="static/js/tools.js"></script>
+<body>
+    <div>
+        <div class="base_menu">
+            <a href="/new/static">
+                <button class="base_top_button" id="1">
+                    主页
+                </button>
+            </a>
+            <a href="/containers">
+                <button class="base_top_button" id="2">
+                    容器
+                </button>
+            </a>
+            <a href="/image">
+                <button class="base_top_button" id="3">
+                    镜像
+                </button>
+            </a>
+            <a href="">
+                <button class="base_top_button" id="3">
+                    系统信息
+                </button>
+            </a>
+        </div>
+        <div class="base_body">
+            {% block content %}{% endblock %}
+        </div>
+    </div>
+</body>
+</html>
+
+
+
+
+

@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta name="renderer" content="webkit">
+    <meta name="viewport" content="initial-scale=1.0,user-scalable=no,maximum-scale=1,width=device-width">
+    <title>{$page.seotitle}</title>
+    <meta name="description" content="{$page.description}">
+    <meta name="keywords" content="{$page.keywords}">
+    <meta name="author" content="order by M206 www.aiwangxue.com">
+    <meta name="applicable-device" content="pc,mobile">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta http-equiv="mobile-agent" content="format=xhtml; url={$page.wapurl}">
+    <meta http-equiv="mobile-agent" content="format=html5; url={$page.wapurl}">
+    <script type="text/javascript">
+        if (navigator.userAgent.match(/(iPhone|iPod|Android|ios)/i)) {
+            <!-- window.location.href="{$page.wapurl}"; -->
+        }
+    </script>
+    <link rel='stylesheet' id='stylesheet-css' href='/Public/test/css/style.css' type='text/css' media='all'>
+    <link rel='stylesheet' id='wp-block-library-css' href='/Public/test/css/style.min.css' type='text/css' media='all'>
+    <script type='text/javascript' src='/Public/test/js/jquery.min.js'></script>
+    <script type='text/javascript' src='/Public/test/js/jquery-migrate.min.js'></script>
+    <link rel='stylesheet' href='/Public/test/css/index.css' type='text/css'>
+    <script> (function () { if (!/*@cc_on!@*/0) return; var e = "abbr, article, aside, audio, canvas, datalist, details, dialog, eventsource, figure, footer, header, hgroup, mark, menu, meter, nav, output, progress, section, time, video".split(', '); var i = e.length; while (i--) { document.createElement(e[i]) } })()</script>
+    <!--[if lte IE 8]><script src="/Public/test/js/respond.min.js"></script><![endif]-->
+    <style>
+        .footer {
+            padding-bottom: 20px;
+        }
+    </style>
+    <script type='text/javascript'>
+        /* <![CDATA[ */
+        var _wpcom_js = { "slide_speed": "4000", "video_height": "482", "TCaptcha": { "appid": "2003622980" }, "errors": { "require": "\u4e0d\u80fd\u4e3a\u7a7a", "email": "\u8bf7\u8f93\u5165\u6b63\u786e\u7684\u7535\u5b50\u90ae\u7bb1", "pls_enter": "\u8bf7\u8f93\u5165", "password": "\u5bc6\u7801\u5fc5\u987b\u4e3a6~32\u4e2a\u5b57\u7b26", "passcheck": "\u4e24\u6b21\u5bc6\u7801\u8f93\u5165\u4e0d\u4e00\u81f4", "phone": "\u8bf7\u8f93\u5165\u6b63\u786e\u7684\u624b\u673a\u53f7\u7801", "sms_code": "\u9a8c\u8bc1\u7801\u9519\u8bef", "captcha_verify": "\u8bf7\u70b9\u51fb\u6309\u94ae\u8fdb\u884c\u9a8c\u8bc1", "captcha_fail": "\u70b9\u51fb\u9a8c\u8bc1\u5931\u8d25\uff0c\u8bf7\u91cd\u8bd5", "nonce": "\u968f\u673a\u6570\u6821\u9a8c\u5931\u8d25", "req_error": "\u8bf7\u6c42\u5931\u8d25" } };
+        /* ]]> */
+    </script>
+    <script type='text/javascript' src='/Public/test/js/main.js'></script>
+    <script type='text/javascript' src='/Public/test/js/wp-embed.js'></script>
+    <script src="https://aiwangxue.com/ban/21103.js"></script>
+    <script src="http://moban.wpmbg.com/default.js"></script>
+</head>
+
+<body class="home blog el-boxed">
+    <header class="header">
+        <div class="container clearfix">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                    data-target=".navbar-collapse"> <span class="icon-bar icon-bar-1"></span> <span
+                        class="icon-bar icon-bar-2"></span> <span class="icon-bar icon-bar-3"></span> </button>
+                <h1 class="logo"> <a href="" rel="home"><img src="skin/images/iqingualogo2-1.png"
+                            alt="{$page.seotitle}"></a> </h1>
+            </div>
+            <div class="collapse navbar-collapse">
+                <nav class="navbar-left primary-menu">
+                    <ul id="menu-%e5%af%bc%e8%88%aa" class="nav navbar-nav wpcom-adv-menu">
+                        <li class="menu-item active"><a href="">首页</a></li>
+                        <li class="menu-item dropdown "><a href="#"
+                                class="dropdown-toggle">热门学校分类</a>
+                            <ul class="dropdown-menu menu-item-wrap menu-item-col-5">
+                                <fancms:diy data="area" sql="pid=15 and status=1" by="ordid" order="asc" num="9"
+                                    mod="2">
+                                    <li class="menu-item">
+                                        <a href="{:area_url($vo['id'])}">{$vo.title}{$page.scname}</a>
+                                    </li>
+                                    <php>$i++;</php>
+                                </fancms:diy>
+                                <li class="menu-item" style="border-bottom:0px;"><a href="/school/">查看更多+</a></li>
+                            </ul>
+                        </li>
+                        <li class="menu-item dropdown ">
+                            <a href="/zhuanye/"
+                                class="dropdown-toggle">{$page.scname}专业</a>
+                            <ul class="dropdown-menu menu-item-wrap menu-item-col-5">
+                                <fancms:diy data="sclass" sql="status=1" by="ordid" order="asc" num="9">
+                                    <li class='menu-item'>
+                                        <a href="/zhuanye/cid-{$vo.ename}.html">
+                                            {$vo.title}学校
+                                        </a>
+                                    </li>
+                                </fancms:diy>
+                                <li class='menu-item'><a href="/zhuanye/">查看更多+</a></li>
+                            </ul>
+                        </li>
+                        <li class="menu-item dropdown "><a href="#"
+                                class="dropdown-toggle">推荐{$page.scname}</a>
+                            <ul class="dropdown-menu menu-item-wrap menu-item-col-5">
+                                <fancms:diy data="school" sql="status=1 and recommend=2" by="ordid" order="asc" num="9">
+                                    <li class='menu-item'>
+                                        <a href="{:school_url($vo['id'])}">
+                                            {$vo.title}
+                                        </a>
+                                    </li>
+                                </fancms:diy>
+                            </ul>
+                        </li>
+                        <li class="menu-item"><a href="/school/">山东职校大全</a></li>
+                        <li class="menu-item"><a href="/news/">职校招生信息</a></li>
+                        <li class="menu-item"><a href="/baoming/">快速报名</a></li>
+                    </ul>
+                </nav>
+            </div>
+    </header>
+
+    <div id="wrap">
+        <div class="wrap container">
+            <div class="main">
+                <div class="slider-wrap clearfix">
+                    <div class="main-slider wpcom-slider swiper-container pull-left">
+                        <ul class="swiper-wrapper">
+                            <li class="swiper-slide"> <a href="a/fenxiang/94.html"> <img
+                                        src="/Public/school/image/185426111.jpg" alt=""></a>
+                            </li>
+                        </ul>
+                        <!-- Add Pagination -->
+                        <div class="swiper-pagination"></div>
+                        <!-- Add Navigation -->
+                        <div class="swiper-button-prev swiper-button-white"></div>
+                        <div class="swiper-button-next swiper-button-white"></div>
+                    </div>
+                    <ul class="feature-post pull-right">
+                        <fancms:diy data="school" sql="status=1 and recommend=1" by="ordid" order="asc" num="3">
+                            <li>
+                                <a href="{:school_url($vo['id'])}">
+                                    <img src="{$vo.titlepic}" width="90" height="90" alt="{$vo.title}">
+                                    <p>{$vo.title}</p>
+                                </a>
+                                <span>{$vo.title}</span>
+                            </li>
+                        </fancms:diy>
+                    </ul>
+                </div>
+                <div class="sec-panel main-list">
+                    <div class="sec-panel-head">
+                        <ul class="list tabs j-newslist">
+                            <li class="tab active"><a data-id="0" href="javascript:;">热门资讯</a></li>
+                        </ul>
+                    </div>
+                    <ul class="post-loop post-loop-default tab-wrap clearfix active">
+                        <li class="item">
+                            <ul class="tj_news">
+                                <fancms:list num="20" id="val" by="hits" order="desc">
+                                    <li><a href="{:aclinkurl($val['id'])}" title="{$val.title}">{$val.title}</a></li>
+                                </fancms:list>
+                            </ul>
+                        </li>
+                    </ul>
+                    <ul class="post-loop post-loop-default tab-wrap clearfix">
+                        <li class="item">
+                            <div class="item-img"> <a class="item-img-inner" href="a/tuiguang/weixintuiguang/111.html"
+                                    title="杭州抖音培训课程：抖音快速引流吸粉教"> <img class="j-lazy" src="skin/images/lazy.png"
+                                        data-original="uploads/200319/1-2003191F1033V.jpg" width="480" height="300"
+                                        alt="杭州抖音培训课程：抖音快速引流吸粉教"> </a> <a class="item-category"
+                                    href="a/fenxiang/index.html">分享</a> </div>
+                            <div class="item-content">
+                                <h2 class="item-title"> <a href="a/tuiguang/weixintuiguang/111.html"
+                                        title="杭州抖音培训课程：抖音快速引流吸粉教"> 杭州抖音培训课程：抖音快速引流吸粉教 </a> </h2>
+                                <div class="item-excerpt">
+                                    <p>&nbsp; 许多在用开始玩起了产品营销，如今抖音刷粉丝能够说是大家较为常见的一件事情，对于那些刚刚走入抖音产品营销...</p>
+                                </div>
+                                <div class="item-meta"> <span class="item-meta-li date">2月前 </span> <span
+                                        class="item-meta-li views" title="杭州抖音培训课程：抖音快速引流吸粉教"><i class="fa fa-eye"></i>
+                                        6</span> </div>
+                            </div>
+                        </li>
+                    </ul>
+                    <ul class="post-loop post-loop-default tab-wrap clearfix">
+                        <li class="item">
+                            <div class="item-img"> <a class="item-img-inner"
+                                    href="a/yunying/xiaohongshuyunying/2019/1114/35.html" title="抖音带货怎么做，抖音带货案例"> <img
+                                        class="j-lazy" src="skin/images/lazy.png"
+                                        data-original="uploads/allimg/c191114/15IG4O19DP-3Sa4.png" width="480"
+                                        height="300" alt="抖音带货怎么做，抖音带货案例"> </a> <a class="item-category"
+                                    href="a/fenxiang/index.html">分享</a> </div>
+                            <div class="item-content">
+                                <h2 class="item-title"> <a href="a/yunying/xiaohongshuyunying/2019/1114/35.html"
+                                        title="抖音带货怎么做，抖音带货案例"> 抖音带货怎么做，抖音带货案例 </a> </h2>
+                                <div class="item-excerpt">
+                                    <p>&nbsp; 今天来分享一下关于抖音带货的一些经验，抖音带货怎么做。以下案例从3个方面来分析： 资金人员、账号、内容制...</p>
+                                </div>
+                                <div class="item-meta"> <span class="item-meta-li date">6月前 </span> <span
+                                        class="item-meta-li views" title="抖音带货怎么做，抖音带货案例"><i class="fa fa-eye"></i>
+                                        0</span> </div>
+                            </div>
+                        </li>
+                    </ul>
+                    <ul class="post-loop post-loop-default tab-wrap clearfix">
+                        <li class="item">
+                            <div class="item-img"> <a class="item-img-inner" href="a/yingxiao/52.html"
+                                    title="抖音运营团队：抖音运营思维攻略"> <img class="j-lazy" src="skin/images/lazy.png"
+                                        data-original="uploads/allimg/c191114/15IG4SK4E0-233E3.jpg" width="480"
+                                        height="300" alt="抖音运营团队：抖音运营思维攻略"> </a> <a class="item-category"
+                                    href="a/fenxiang/index.html">分享</a> </div>
+                            <div class="item-content">
+                                <h2 class="item-title"> <a href="a/yingxiao/52.html" title="抖音运营团队：抖音运营思维攻略">
+                                        抖音运营团队：抖音运营思维攻略 </a> </h2>
+                                <div class="item-excerpt">
+                                    <p>&nbsp; 带火了很多“爆款”产品，这些品牌和产品的销量大增，引得很多企业和品牌方们分外眼红。 在这个为王的时代，早...</p>
+                                </div>
+                                <div class="item-meta"> <span class="item-meta-li date">6月前 </span> <span
+                                        class="item-meta-li views" title="抖音运营团队：抖音运营思维攻略"><i class="fa fa-eye"></i>
+                                        2</span> </div>
+                            </div>
+                        </li>
+                    </ul>
+                    <ul class="post-loop post-loop-default tab-wrap clearfix">
+                        <li class="item">
+                            <div class="item-img"> <a class="item-img-inner" href="a/peixun/84.html"
+                                    title="热巴舞抖音教程：抖音带货直播他们的营"> <img class="j-lazy" src="skin/images/lazy.png"
+                                        data-original="uploads/allimg/c191114/15IG511532Q0-4b59.jpg" width="480"
+                                        height="300" alt="热巴舞抖音教程：抖音带货直播他们的营"> </a> <a class="item-category"
+                                    href="a/fenxiang/index.html">分享</a> </div>
+                            <div class="item-content">
+                                <h2 class="item-title"> <a href="a/peixun/84.html" title="热巴舞抖音教程：抖音带货直播他们的营">
+                                        热巴舞抖音教程：抖音带货直播他们的营 </a> </h2>
+                                <div class="item-excerpt">
+                                    <p>&nbsp; 目前已进入下半场，用户红利也将消失，达人们普遍为变现而发愁，不过短视频平台在逐步电商化，直播带货和短视...</p>
+                                </div>
+                                <div class="item-meta"> <span class="item-meta-li date">6月前 </span> <span
+                                        class="item-meta-li views" title="热巴舞抖音教程：抖音带货直播他们的营"><i class="fa fa-eye"></i>
+                                        1</span> </div>
+                            </div>
+                        </li>
+                    </ul>
+                    <ul class="post-loop post-loop-default tab-wrap clearfix">
+                        <li class="item">
+                            <div class="item-img"> <a class="item-img-inner" href="a/fenxiang/94.html"
+                                    title="抖音培训网：拍的抖音没人看3招帮你解决"> <img class="j-lazy" src="skin/images/lazy.png"
+                                        data-original="uploads/200319/1-2003191F313a1.jpg" width="480" height="300"
+                                        alt="抖音培训网：拍的抖音没人看3招帮你解决"> </a> <a class="item-category"
+                                    href="a/fenxiang/index.html">分享</a> </div>
+                            <div class="item-content">
+                                <h2 class="item-title"> <a href="a/fenxiang/94.html" title="抖音培训网：拍的抖音没人看3招帮你解决">
+                                        抖音培训网：拍的抖音没人看3招帮你解决 </a> </h2>
+                                <div class="item-excerpt">
+                                    <p>&nbsp; 爆火带动了多少网红一夜爆火，给很多普通人带来了新的表达方式，多少产品莫名被抖音带火，让很多自媒体和企业...</p>
+                                </div>
+                                <div class="item-meta"> <span class="item-meta-li date">2月前 </span> <span
+                                        class="item-meta-li views" title="抖音培训网：拍的抖音没人看3招帮你解决"><i class="fa fa-eye"></i>
+                                        1</span> </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <aside class="sidebar">
+                <fancms:diy data="articlecate" sql="status=1 and id in(1,2,3,4,5,6)" by="ordid" order="asc" num="6">
+                    <div id="wpcom-post-thumb-3" class="widget widget_post_thumb">
+                        <h3 class="news_cat"><a href="{:typelinkurl($vo['id'])}">{$vo.name}</a></h3>
+                        <ul class="f_l">
+                            <fancms:list num="4" cid="'.$vo['id'].'" id="val" by="hits" order="desc">
+                                <li><a href="{:aclinkurl($val['id'])}" title="{$val.title}">{$val.title}</a></li>
+                            </fancms:list>
+                        </ul>
+                    </div>
+                </fancms:diy>
+            </aside>
+        </div>
+    </div>
+    <include file="Public:foot" />
+</body>
+
+</html>

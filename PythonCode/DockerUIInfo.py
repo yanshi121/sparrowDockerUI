@@ -1,16 +1,17 @@
 import docker
 import psutil
 import requests
+import pwd
 
 
 class DockerUIInfo(object):
-    # def __init__(self):
-        # self.docker_env = docker.from_env()
-        # self.docker_version = self.docker_env.version()
+    def __init__(self):
+        self.docker_env = docker.from_env()
+        self.docker_version = self.docker_env.version()
 
-    # def refresh_docker_information(self):
-        # self.docker_env = docker.from_env()
-        # self.docker_version = self.docker_env.version()
+    def refresh_docker_information(self):
+        self.docker_env = docker.from_env()
+        self.docker_version = self.docker_env.version()
 
     def docker_info(self):
         self.refresh_docker_information()
@@ -46,7 +47,7 @@ class DockerUIInfo(object):
             "cpu_count": cpu_count,
             "cpu_count_logical": cpu_count_logical
         }
-
+    
     def system_info_cpu_percent(self):
         # interval：每隔0.5s刷新一次
         # percpu：查看所有的cpu使用率
@@ -54,32 +55,32 @@ class DockerUIInfo(object):
         return {
             "cpu_percent": cpu_percent
         }
-
+    
     def system_info_virtual(self):
         # 输出总内存
-        virtual_memory_total = round(psutil.virtual_memory()[0] / 1024 / 1024, 2)
+        virtual_memory_total = round(psutil.virtual_memory()[0] / 1024 /1024, 2)
         # 输出可用内存
-        virtual_memory_available = round(psutil.virtual_memory()[1] / 1024 / 1024, 2)
+        virtual_memory_available = round(psutil.virtual_memory()[1] / 1024 /1024, 2)
         # 输出内存使用率
         virtual_memory_percent = psutil.virtual_memory()[2]
         # 输出已使用内存
-        virtual_memory_used = round(psutil.virtual_memory()[3] / 1024 / 1024, 2)
+        virtual_memory_used = round(psutil.virtual_memory()[3] / 1024 /1024, 2)
         return {
             "virtual_memory_total": virtual_memory_total,
             "virtual_memory_available": virtual_memory_available,
             "virtual_memory_percent": virtual_memory_percent,
             "virtual_memory_used": virtual_memory_used
         }
-
+    
     def system_info_disk(self):
         # 磁盘分区信息
         disk_partitions = psutil.disk_partitions()
         # 磁盘总大小
-        disk_usage_total = round(psutil.disk_usage('/')[0] / 1024 / 1024 / 1024, 2)
+        disk_usage_total = round(psutil.disk_usage('/')[0] / 1024 /1024 /1024, 2)
         # 磁盘已使用大小
-        disk_usage_used = round(psutil.disk_usage('/')[1] / 1024 / 1024 / 1024, 2)
+        disk_usage_used = round(psutil.disk_usage('/')[1] / 1024 /1024 /1024, 2)
         # 磁盘剩余大小
-        disk_usage_free = round(psutil.disk_usage('/')[2] / 1024 / 1024 / 1024, 2)
+        disk_usage_free = round(psutil.disk_usage('/')[2] / 1024 /1024 /1024, 2)
         # 磁盘使用率
         disk_usage_percent = psutil.disk_usage('/')[3]
         return {
@@ -89,7 +90,7 @@ class DockerUIInfo(object):
             "disk_usage_free": disk_usage_free,
             "disk_usage_percent": disk_usage_percent
         }
-
+    
     def system_info_net(self):
         # 查询网络发送的字节数
         net_io_counters_bytes_sent = psutil.net_io_counters()[0]
@@ -117,7 +118,7 @@ class DockerUIInfo(object):
             "net_io_counters_drop_in": net_io_counters_drop_in,
             "net_io_counters_drop_out": net_io_counters_drop_out
         }
-
+    
     def system_info_pid(self):
         # 所有进程ID
         pids_info = []
@@ -157,32 +158,33 @@ class DockerUIInfo(object):
                     "memory_lib": memory_lib,
                     "memory_data": memory_data,
                     "memory_dirty": memory_dirty,
-                }
-            )
+                    }
+                    )
             pids_info.append(
                 {
-                    "ID": pid,
-                    "name": name,
-                    "exe_path": exe_path,
-                    "cwd_path": cwd_path,
+                    "ID": pid, 
+                    "name": name, 
+                    "exe_path": exe_path, 
+                    "cwd_path": cwd_path, 
                     "memory_info": memory_infos
-                }
-            )
+                    }
+                    )
         return {
             "pids_info": pids_info
         }
-
+    
+    def system_users(self):
+        return [user.pw_name for user in pwd.getpwall()]
+    
     def get_ip(self):
         res = requests.get('http://myip.ipip.net', timeout=5).text
         ip = res.split("  来自于：")[0].split("IP：")[1]
-        addres = res.split("  来自于：")[1].split(" ")[0] + "-" + res.split("  来自于：")[1].split(" ")[1] + "-" + \
-                 res.split("  来自于：")[1].split(" ")[2]
+        addres = res.split("  来自于：")[1].split(" ")[0] + "-" + res.split("  来自于：")[1].split(" ")[1] + "-" + res.split("  来自于：")[1].split(" ")[2]
         shop = res.split("  来自于：")[1].split(" ")[-1].replace("\n", '')
-        return {"ip": ip, "addres": addres, "shop": shop}
-
+        return {"ip":ip, "addres": addres, "shop": shop}
+    
     def login_docker(self, user_name: str, user_password: str, registry="https://index.docker.io/v1/"):
         self.docker_env.login(user_name, user_password, registry)
-
 
 if __name__ == '__main__':
     run = DockerUIInfo()

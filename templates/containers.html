@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<script type="text/javascript" src="static/js/container.js"></script>
+<script type="text/javascript"> 
+    window.onload=function(){ 
+        start_stop()
+ } 
+</script>
+<div class="container_docker_list_docker_list_container">
+    <div>
+        <a href="/container_create"><button>新建容器</button></a>
+    </div>
+    <table border="1" cellspacing="1" class="container_docker_list_container_table">
+        <thead>
+            <tr>
+                <th>
+                    容器id
+                </th>
+                <th>
+                    容器所使用镜像
+                </th>
+                <th>
+                    容器名字
+                </th>
+                <th>
+                    容器短id
+                </th>
+                <th>
+                    容器状态
+                </th>
+                <th>
+                    启动/停止
+                </th>
+                <th>
+                    重启
+                </th>
+                <th>
+                    删除
+                </th>
+                <th>
+                    重命名
+                </th>
+                <th>
+                    详情
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for container in docker_list_container %}
+                {% for k, v in container.items() %}
+                    <tr>
+                        <td class="container_id">{{v.id}}</td>
+                        <td class="container_image">{{v.image}}</td>
+                        <td class="container_name">{{v.name}}</td>
+                        <td class="container_short_id">{{v.short_id}}</td>
+                        <td class="container_status">{{v.status}}</td>
+                        <td><button class="container_start_stop" onclick="container_start_stop_button('{{ v.status }}', '{{ v.name }}')">启动</button></td>
+                        <td><button class="container_restart" onclick="container_restart_button('{{ v.name }}')">重启</button></td>
+                        <td><button class="container_remove" onclick="container_remove_button('{{ v.name }}')">删除</button></td>
+                        <td><button class="container_rename" onclick="container_rename_button('{{ v.name }}')">重命名</button><input type="text" id="container_rename_input_{{v.name}}"></td>
+                        <td><a href=""><button>详情</button></a></td>
+                    </tr>
+                {% endfor %}
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+    
+{% endblock %}

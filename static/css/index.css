@@ -1,27 +1,4 @@
-.index_docker_info{
-    float: left;
-    margin-left: 35px;
-}
 
-.index_system_ip{
-    float: left;
-    margin-left: 35px;
-}
-
-.index_system_info_virtual{
-    float: left;
-    margin-left: 35px;
-}
-
-.index_system_info_disk{
-    float: left;
-    margin-left: 35px;
-}
-
-.index_system_info_cpu{
-    float: left;
-    margin-left: 35px;
-}
 
 .base_menu{
     width: auto;

@@ -1,0 +1,92 @@
+{% extends "base.html" %}
+
+{% block content %}
+    
+<script type="text/javascript" src="static/js/index.js"></script>
+    <div class="index_docker_info">
+        <h2>docker以及系统信息：</h2>
+        <table border="1" cellspacing="1" class="container_docker_list_container_table">
+            <thead>
+                <tr>
+                    <th>docker版本号</th>
+                    <th>docker内核版本</th>
+                    <th>dockerApi版本</th>
+                    <th>docker最低Api版本</th>
+                    <th>docker依赖go版本</th>
+                    <th>本机IP</th>
+                    <th>本机IP归属地</th>
+                    <th>本机IP运营商</th>
+                    <th>主机系统</th>
+                    <th>主机系统架构</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>{{docker_info.docker_version}}</td>
+                    <td>{{docker_info.docker_kernel_version}}</td>
+                    <td>{{docker_info.docker_api_version}}</td>
+                    <td>{{docker_info.docker_min_API_version}}</td>
+                    <td>{{docker_info.docker_go_version}}</td>
+                    <td>{{system_ip.ip}}</td>
+                    <td>{{system_ip.addres}}</td>
+                    <td>{{system_ip.shop}}</td>
+                    <td>{{docker_info.docker_os}}</td>
+                    <td>{{docker_info.docker_arch}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <h2>内存以及磁盘使用信息：</h2>
+    <div class="index_system_info_virtual">
+        <table border="1" cellspacing="1" class="container_docker_list_container_table">
+            <thead>
+                <tr>
+                    <th>总内存</th>
+                    <th>可用内存</th>
+                    <th>已使用内存</th>
+                    <th>内存使用率</th>
+                    <th>磁盘总大小</th>
+                    <th>磁盘已使用大小</th>
+                    <th>磁盘剩余大小</th>
+                    <th>磁盘使用率</th>
+                </tr>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td id="virtual_memory_total">{{system_info_virtual.virtual_memory_total}}M</td>
+                    <td id="virtual_memory_available">{{system_info_virtual.virtual_memory_available}}M</td>
+                    <td id="virtual_memory_used">{{system_info_virtual.virtual_memory_used}}M</td>
+                    <td id="virtual_memory_percent">{{system_info_virtual.virtual_memory_percent}}%</td>
+                    <td id="disk_usage_total">{{system_info_disk.disk_usage_total}}G</td>
+                    <td id="disk_usage_used">{{system_info_disk.disk_usage_used}}G</td>
+                    <td id="disk_usage_free">{{system_info_disk.disk_usage_free}}G</td>
+                    <td id="disk_usage_percent">{{system_info_disk.disk_usage_percent}}%</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <h2>cpu使用信息：</h2>
+    <div class="index_system_info_cpu">
+        <table border="1" cellspacing="1" class="container_docker_list_container_table">
+            <thead>
+                <tr>
+                    <th>CPU逻辑数量</th>
+                    <th>CPU物理核心</th>
+                    {% for index in range(system_info_cpu_percent['cpu_percent'] |length ) %}
+                        <th>第{{index + 1}}核心使用率</th>
+                    {% endfor %}
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>{{system_info_cpu.cpu_count}}个</td>
+                    <td>{{system_info_cpu.cpu_count_logical}}个</td>
+                    {% for cpu_percent in system_info_cpu_percent['cpu_percent'] %}
+                        <th id="cpu_percent_{{loop.index}}">{{cpu_percent}}%</th>
+                    {% endfor %}
+                </tr>
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

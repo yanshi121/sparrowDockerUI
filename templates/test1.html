@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1" />
+    <meta name="viewport"
+        content="initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=0, width=device-width">
+    <title>{$page.seotitle}</title>
+    <meta name="keywords" content="{$page.keywords}" />
+    <meta name="description" content="{$page.description}" />
+    <meta http-equiv="mobile-agent" content="format=xhtml; url={$page.wapurl}">
+    <meta http-equiv="mobile-agent" content="format=html5; url={$page.wapurl}">
+    <script type="text/javascript">
+        if (navigator.userAgent.match(/(iPhone|iPod|Android|ios)/i)) {
+            <!-- window.location.href="{$page.wapurl}"; -->
+        }
+    </script>
+    <link rel="stylesheet" type="text/css" href="/Public/school/css/styleall.css" />
+    <link rel="stylesheet" type="text/css" href="/Public/school/css/inde.css" />
+    <script type="text/javascript" src="/Public/school/js/jquery.js"></script>
+    <script type="text/javascript" src="/Public/school/js/config.js"></script>
+    <script type="text/javascript" src="/Public/school/js/common.js"></script>
+    <script type="text/javascript" src="/Public/school/js/page.js"></script>
+    <script type="text/javascript" src="/Public/school/js/home.js"></script>
+</head>
+
+<body>
+    <include file="Public:top" />
+    <div class="m b15 c_b"> </div>
+    <div class="m modTop">
+        <div class="f_l m_r">
+            <ul>
+                <li class="f_lTitle">热门学校分类</li>
+                <fancms:diy data="area" sql="pid=15 and status=1" by="ordid" order="asc" num="17" mod="2">
+                    <li class="f_cs" style="<eq name=" mod" value="0">padding-left:1px;border-right: 1px solid #dddddd;
+                        </eq>
+                        <if condition="$i eq 16">border-bottom:none</if>"><a
+                            href="{:area_url($vo['id'])}">{$vo.title}{$page.scname}</a>
+                    </li>
+                    <php>$i++;</php>
+                </fancms:diy>
+                <li class="f_cs" style="border-bottom:0px;"><a href="/school/">查看更多+</a></li>
+                <div class="c_b"></div>
+            </ul>
+            <form onSubmit="return onSubmit($(this))">
+                <input type="hidden" name="post[device]" value="PC">
+                <input type="hidden" name="post[url]" id="url" value="{$page.url}">
+                <input type="hidden" name="post[province]" value="">
+                <input type="hidden" name="post[city]" value="">
+                <input type="hidden" name="post[areaid]" value="">
+                <ol class="ksdjForm">
+                    <li class="f_lTitle">快速登记</li>
+                    <li><span>姓名：</span><input name="post[name]" type="text" class="input_box" placeholder="输入户口本的名字">
+                    </li>
+                    <li><span>电话：</span><input name="post[tel]" type="text" class="input_box" placeholder="能联系到你的电话">
+                    </li>
+                    <li><span>分数：</span><input name="post[fenshu]" type="text" class="input_box"
+                            placeholder="填写分数线（会考、中考、高考）"></li>
+                    <li><span>学历：</span><select name="post[xueli]">
+                            <option value="初中">初中</option>
+                            <option value="高中">高中</option>
+                            <option value="中专">中专</option>
+                            <option value="其他">其他</option>
+                        </select></li>
+                    <li class="btn"><input type="submit" value="免费获取第一手招生信息" class="submit" name="submit"></li>
+                </ol>
+            </form>
+        </div>
+        <div class="f_r m_l">
+            <dd class="f_l ml_fr_c">
+                <script type="text/javascript" src="/Public/school/js/slide.js"></script>
+                <div id="slide_a26" class="slide" style="width:680px;height:240px;">
+                    <a href="/new/static" target="_blank"><img src="/Public/school/image/185426111.jpg" width="680" height="240"
+                                                               alt="" /></a>
+                </div>
+                <script type="text/javascript">new dslide('slide_a26');</script>
+                <fancms:diy data="school" sql="status=1 and recommend=3" by="ordid" order="asc" num="1">
+                    <h1><a href="{:school_url($vo['id'])}">{$vo.title}</a>
+                        <p>
+                            <?php echo mb_substr(deletehtml(strip_tags(htmlspecialchars_decode($vo['content']))),0,80,'utf-8');?>
+                        </p>
+                    </h1>
+                </fancms:diy>
+                <h2><a href="#" class="tab_2">推荐{$page.scname}</a>
+                </h2>
+                <ul>
+                    <fancms:diy data="school" sql="status=1 and recommend=2" by="ordid" order="asc" num="24">
+                        <li><a href="{:school_url($vo['id'])}">{$vo.title}</a></li>
+                    </fancms:diy>
+                </ul>
+            </dd>
+            <dd class="f_r ml_fr_r">
+                <fancms:diy data="school" sql="status=1" by="time" order="desc" num="2">
+                    <a href="{:school_url($vo['id'])}"><span>{$vo.title}</span>
+                        <center><img src="{$vo.titlepic}" width="180" height="150" /></center>
+                        <p>{$vo.addsctime}年建校</p>
+                    </a>
+                    <p class="f_gray" style="border-bottom:1px solid #dddddd">
+                        <?php echo mb_substr(deletehtml(strip_tags(htmlspecialchars_decode($vo['content']))),0,20,'utf-8');?>
+                    </p>
+                </fancms:diy>
+            </dd>
+            <dd class="f_l ml_fl_school">
+                <h3>推荐院校</h3>
+                <ul>
+                    <fancms:diy data="school" sql="status=1 and recommend=1" by="ordid" order="asc" num="6">
+                        <li><a href="{:school_url($vo['id'])}"><img src="{$vo.titlepic}" width="90" height="90"
+                                    alt="{$vo.title}">
+                                <p>{$vo.title}</p>
+                            </a></li>
+                    </fancms:diy>
+                </ul>
+            </dd>
+        </div>
+    </div>
+    <div class="m b15 c_b"> </div>
+    <div class="m indexSchool">
+        <h3><a href="/school/">学校库</a><span class="f_r px14 f_n">
+                <fancms:diy data="sclass" sql="status=1" by="ordid" order="asc" num="32"><a
+                        href="/school/cid-{$vo.ename}.html">{$vo.title}学校</a>  </fancms:diy>
+            </span></h3>
+        <div class="c_b b15"> </div>
+        <fancms:diy data="area" sql="id in(36,37,38,39,42,41) and status=1" id="t" by="ordid" order="asc" num="6"
+            mod="2">
+            <eq name="mod" value="0">
+                <div class="f_l">
+                    <else />
+                    <div class="f_r">
+            </eq>
+            <fancms:diy data="school" sql="status=1 and aid='.$t['id'].'" by="ordid" order="asc" num="1"><a
+                    href="{:school_url($vo['id'])}" class="f_l"><img src="{$vo['titlepic']}" width="250"
+                        height="180" /></a></fancms:diy>
+            <ul class="f_l">
+                <li class="f_b"><a href="/school/cs-{$t.id}.html">{:get_area($t['id'])}地区{$page.scname}</a></li>
+                <fancms:diy data="school" sql="status=1 and aid='.$t['id'].'" by="ordid" order="asc" num="6">
+                    <li><a href="{:school_url($vo['id'])}">{$vo.title}</a></li>
+                </fancms:diy>
+            </ul>
+    </div>
+    </fancms:diy>
+    </div>
+    <div class="m b15 c_b"> </div>
+    <div class="m"><!--<a href="#" target="_blank"><img src="/Public/school/image/indexAd3.jpg" /></a>--></div>
+    <div class="m indexMajor">
+        <h3><a href="/zhuanye/">{$page.scname}专业</a><span class="f_r px14 f_n">
+                <fancms:diy data="sclass" sql="status=1" by="ordid" order="asc" num="32">
+                    <a href="/zhuanye/cid-{$vo.ename}.html">{$vo.title}学校</a>
+                </fancms:diy>
+            </span>
+        </h3>
+        <div class="f_l">
+            <ul>
+                <fancms:diy data="area" sql="pid=15 and status=1" id="val" by="ordid" order="asc" num="10">
+                    <li><a href="/zhuanye/cs-{$val.id}.html">{$val.title}{$page.scname}招生专业</a></li>
+                </fancms:diy>
+            </ul>
+        </div>
+        <div class="f_r">
+            <div class="c_b b15"> </div>
+            <dt>
+                <fancms:diy data="sclass" sql="status=1" by="ordid" order="asc" num="5">
+                    <a href="/zhuanye/cid-{$vo.ename}.html" class="tab_<if condition=" $ti eq 0">2
+                        <else />1</if>" id="major_t_{$ti+1}" onmouseover="Tb({$ti+1}, 5, 'major', 'tab');">{$vo.title}
+                    </a>
+                    <php>$ti++;</php>
+                </fancms:diy>
+            </dt>
+            <fancms:diy data="sclass" sql="status=1" by="ordid" order="asc" num="5">
+                <ul id="major_c_{$si+1}" <if condition="$si neq 0">style="display:none"</if>>
+                    <php>
+                        $si++;
+                    </php>
+                    <fancms:diy data="zhuanye" sql="status=1 and zid='.$vo['id'].'" id="val" by="id" order="desc"
+                        num="20">
+                        <php>
+                            $getscinfo=M('school')->find($val['sid']);
+                        </php>
+                        <li><a href="{:zhuanye_url($val['id'])}">{$val.title}-{$getscinfo['title']}</a></li>
+                    </fancms:diy>
+                </ul>
+            </fancms:diy>
+        </div>
+    </div>
+    <div class="m b15 c_b"> </div>
+    <div class="m"><!--<a href="#" target="_blank" rel="nofollow"><img src="/Public/school/image/indexAd1.jpg" /></a>-->
+    </div>
+    <div class="m b15 c_b"> </div>
+    <div class="m news">
+        <div class="f_l m_l">
+            <dd class="news_new">新闻动态</dd>
+            <fancms:diy data="articlecate" sql="status=1 and id in(1,2,3,4,5,6)" by="ordid" order="asc" num="6">
+                <ul class="f_l">
+                    <li class="news_cat"><a href="{:typelinkurl($vo['id'])}">{$vo.name}</a></li>
+                    <fancms:list num="8" cid="'.$vo['id'].'" id="val" by="hits" order="desc">
+                        <li><a href="{:aclinkurl($val['id'])}" title="{$val.title}">{$val.title}</a></li>
+                    </fancms:list>
+                </ul>
+            </fancms:diy>
+        </div>
+        <div class="f_r m_r">
+            <dd>
+                <h3><strong>热门资讯</strong></h3>
+            </dd>
+            <ul class="tj_news">
+                <fancms:list num="21" id="val" by="hits" order="desc">
+                    <li><a href="{:aclinkurl($val['id'])}" title="{$val.title}">{$val.title}</a></li>
+                </fancms:list>
+            </ul>
+        </div>
+    </div>
+    <div class="m b15 c_b"> </div>
+    <div class="m">
+        <div id="links">
+            <strong>合作伙伴</strong>
+            <fancms:link num="30"><a target="_blank" href="{$vo.linkurl}">{$vo.name}</a> </fancms:link>
+        </div>
+    </div>
+    <div class="m b15 c_b"> </div>
+    <include file="Public:foot" />
+    <script src="/Public/school/js/ap.js" type="text/javascript"></script>
+</body>
+
+</html>

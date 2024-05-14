@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div>
+    <form action="/container_create" method="post" onsubmit="return container_create_not_null(this)">
+        <label for="container_create_image">选择镜像:</label>
+        <select name="container_create_image" id="container_create_image">
+            {% for image in docker_list_image %}
+                {% for k, v in image.items() %}
+                    <option value="{{k}}">{{k}}</option>
+                {% endfor %}
+            {% endfor %}
+        </select>
+        <br>
+        <label for="container_create_user">选择用户:</label>
+        <select name="container_create_user" id="container_create_user">
+            {% for user in system_users %}
+                <option value="{{user}}">{{user}}</option>
+            {% endfor %}
+        </select>
+        <br>
+        <label for="container_create_name">容器名字:</label>
+        <input type="text" id="container_create_name" name="container_create_name">
+        <br>
+        <label for="container_create_in_port">容器内端口:</label>
+        <input type="number" id="container_create_in_port" name="container_create_in_port">
+        <label for="container_create_out_port">宿主机端口:</label>
+        <input type="number" id="container_create_out_port" name="container_create_out_port">
+        <br>
+        <label for="container_create_environment">容器环境变量:</label>
+        <textarea name="container_create_environment" id="container_create_environment" cols="40" rows="1" placeholder="变量名=变量值，多个变量用英文;隔断"></textarea>
+        <br>
+        <label for="container_create_command">容器启动时执行的命令:</label>
+        <textarea name="container_create_command" id="container_create_command" cols="30" rows="1" placeholder="默认执行'/bin/bash'"></textarea>
+        <br>
+        <input type="submit">
+    </form>
+</div>
+    
+{% endblock %}

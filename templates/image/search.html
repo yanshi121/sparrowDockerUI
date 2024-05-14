@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block content %}
+<script type="text/javascript" src="static/js/image.js"></script>
+<div>
+    <table border="1" cellspacing="1" class="image_docker_list_image_table">
+        <thead>
+            <tr>
+                <th>
+                    名字
+                </th>
+                <th>
+                    简介
+                </th>
+                <th>
+                    是否自动构建镜像
+                </th>
+                <th>
+                    星星数
+                </th>
+                <th>
+                    拉取
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for image in docker_search_image %}
+                <tr>
+                    <td>{{image.name}}</td>
+                    <td>{{image.description}}</td>
+                    <td>{{image.is_automated}}</td>
+                    <td>{{image.star_count}}</td>
+                    <td><button class="get_image" onclick="get_image_button('{{image.name}}')" id="get_image">拉取</button></td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>    
+{% endblock %}

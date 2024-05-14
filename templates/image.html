@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+{% block content %}
+<script type="text/javascript" src="static/js/image.js"></script>
+<div class="image_docker_list_image">
+    <form action="/search_image" method="post" onsubmit="return image_search_button()">
+        需要查询的镜像名称：<input type="text" id="image_search_input" name="image_name">
+        <input type="submit" value="搜索镜像">
+    </form>
+    <table border="1" cellspacing="1" class="image_docker_list_image_table">
+        <thead>
+            <tr>
+                <th>
+                    镜像id
+                </th>
+                <th>
+                    镜像短id
+                </th>
+                <th>
+                    镜像名字
+                </th>
+                <th>
+                    删除
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for image in docker_list_image %}
+                {% for k, v in image.items() %}
+                    <tr>
+                        <td>{{v.image_id}}</td>
+                        <td>{{v.image_short_id}}</td>
+                        <td>{{v.image_tags}}</td>
+                        <td><button class="image_remove" onclick="image_remove_button('{{ v.image_tags }}')">删除</button></td>
+                    </tr>
+                {% endfor %}
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+    
+{% endblock %}
